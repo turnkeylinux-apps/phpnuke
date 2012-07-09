@@ -45,6 +45,13 @@ sed -i "s|^\$dbname.*|\$dbname = \"$DB_NAME\";|" $CONF
 SQLDUMP=$WEBROOT/install/sql/nuke.sql
 mysql --user=root --password=$MYSQL_PASS $DB_NAME < $SQLDUMP
 
+# create super user
+MD5_PASS=$(echo -n $ADMIN_PASS | md5sum | cut -d " " -f 1)
+$MYSQL_BATCH --database=$DB_NAME --execute "INSERT INTO nuke_authors VALUES ('admin', 'God', '', '$ADMIN_MAIL', '$MD5_PASS', 0, 1, '');"
+
+# tweak settings
+$MYSQL_BATCH --database=$DB_NAME --execute "UPDATE nuke_config SET sitename=\"TurnKey PHPNuke\", adminmail=\"$ADMIN_MAIL\", notify_email=\"$ADMIN_MAIL\";"
+
 # stop services
 /etc/init.d/mysql stop
 
