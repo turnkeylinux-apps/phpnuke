@@ -52,6 +52,11 @@ $MYSQL_BATCH --database=$DB_NAME --execute "INSERT INTO nuke_authors VALUES ('ad
 # tweak settings
 $MYSQL_BATCH --database=$DB_NAME --execute "UPDATE nuke_config SET sitename=\"TurnKey PHPNuke\", adminmail=\"$ADMIN_MAIL\", notify_email=\"$ADMIN_MAIL\";"
 
+# tweak welcome message
+WELCOME="<br/>To get started, log into the <a href=admin.php>administration console</a> as <b>admin</b> and get nuking.<br><br><i>Note: If you would like to remove all visible copyright messages and references to PHP-Nuke, you need a <a href=http://phpnuke.org/modules.php?name=Commercial_License>commercial license</a>.</i>"
+
+$MYSQL_BATCH --database=$DB_NAME --execute "UPDATE nuke_message SET title=\"Welcome to TurnKey PHPNuke\", content=\"$WELCOME\" WHERE mid=1;"
+
 # stop services
 /etc/init.d/mysql stop
 
