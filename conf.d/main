@@ -60,6 +60,9 @@ $MYSQL_BATCH --database=$DB_NAME --execute "UPDATE nuke_message SET title=\"Welc
 # secure sensitive files
 chmod 640 $WEBROOT/config.php
 
+# ugly hack to disable zlib
+sed -i "s|zlib|zlib-disabled|" $WEBROOT/mainfile.php
+
 # stop services
 /etc/init.d/mysql stop
 
