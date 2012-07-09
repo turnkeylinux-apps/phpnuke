@@ -57,6 +57,9 @@ WELCOME="<br/>To get started, log into the <a href=admin.php>administration cons
 
 $MYSQL_BATCH --database=$DB_NAME --execute "UPDATE nuke_message SET title=\"Welcome to TurnKey PHPNuke\", content=\"$WELCOME\" WHERE mid=1;"
 
+# secure sensitive files
+chmod 640 $WEBROOT/config.php
+
 # stop services
 /etc/init.d/mysql stop
 
