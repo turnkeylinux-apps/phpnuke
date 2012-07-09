@@ -11,3 +11,13 @@ ADMIN_MAIL=admin@example.com
 SRC=/usr/local/src
 WEBROOT=/var/www/phpnuke
 
+# unpack and set permissions
+tar -zxf $SRC/phpnuke-release-*.tar.gz -C $SRC
+mv $SRC/phpnuke/html $WEBROOT
+mkdir -p $WEBROOT/docs
+mv $SRC/phpnuke/*.txt $WEBROOT/docs
+rm -rf $SRC/phpnuke-*
+chown -R root:root $WEBROOT
+chown www-data:www-data $WEBROOT/ultramode.txt
+chown www-data:www-data $WEBROOT/config.php
+
