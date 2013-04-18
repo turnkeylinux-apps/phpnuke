@@ -1,12 +1,9 @@
 #!/bin/bash -ex
 
-dl() {
-    [ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
-    cd $2; curl -L -f -O $PROXY $1; cd -
-}
+VERSION="phpnuke-release-8.2.4.tar.gz"
+URL="http://www.phpnuke.org/modules/Release/files/$VERSION"
 
-VERSION="8.2.4"
-URL="http://www.phpnuke.org/modules/Release/files/phpnuke-release-${VERSION}.tar.gz"
-
-dl $URL /usr/local/src
+[ "$FAB_HTTP_PROXY" ] && export HTTP_PROXY="$FAB_HTTP_PROXY"
+wget $URL -O /usr/local/src/$VERSION
+unset HTTP_PROXY
 
