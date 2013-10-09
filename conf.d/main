@@ -21,6 +21,9 @@ chown -R root:root $WEBROOT
 chown www-data:www-data $WEBROOT/ultramode.txt
 chown www-data:www-data $WEBROOT/config.php
 
+# fix for php 5.4
+sed -i "s|@import_request_var|//@import_request_var|" $WEBROOT/mainfile.php
+
 # configure apache
 a2dissite default
 a2ensite phpnuke
