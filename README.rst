@@ -29,5 +29,5 @@ Credentials *(passwords set at first boot)*
 
 
 .. _PHP-Nuke: http://phpnuke.org/
-.. _TurnKey Core: http://www.turnkeylinux.org/core
+.. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _PHPMyAdmin: http://www.phpmyadmin.net
